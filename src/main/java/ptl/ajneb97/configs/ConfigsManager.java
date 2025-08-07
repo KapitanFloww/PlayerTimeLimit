@@ -4,33 +4,33 @@ import ptl.ajneb97.PlayerTimeLimit;
 
 public class ConfigsManager {
 
-	private PlayerConfigsManager playerConfigsManager;
-	private MensajesConfigManager mensajesConfigManager;
-	private MainConfigManager mainConfigManager;
-	
-	public ConfigsManager(PlayerTimeLimit plugin) {
-		this.mainConfigManager = new MainConfigManager(plugin);
-		this.playerConfigsManager = new PlayerConfigsManager(plugin);
-		this.mensajesConfigManager = new MensajesConfigManager(plugin);
-	}
-	
-	public void configurar() {
-		this.mainConfigManager.configurar();
-		this.playerConfigsManager.configurar();
-		this.mensajesConfigManager.configurar();
-	}
+    private final PlayerConfigsManager playerConfigsManager;
+    private final MensajesConfigManager mensajesConfigManager;
+    private final MainConfigManager mainConfigManager;
 
-	public MensajesConfigManager getMensajesConfigManager() {
-		return mensajesConfigManager;
-	}
+    public ConfigsManager(PlayerTimeLimit plugin) {
+        this.mainConfigManager = new MainConfigManager(plugin);
+        this.playerConfigsManager = new PlayerConfigsManager(plugin);
+        this.mensajesConfigManager = new MensajesConfigManager(plugin);
+    }
 
-	public PlayerConfigsManager getPlayerConfigsManager() {
-		return playerConfigsManager;
-	}
+    public void configurar() {
+        this.mainConfigManager.configurar();
+        this.playerConfigsManager.configurar();
+        this.mensajesConfigManager.configurar();
+    }
 
-	public MainConfigManager getMainConfigManager() {
-		return mainConfigManager;
-	}
+    public MensajesConfigManager getMensajesConfigManager() {
+        return mensajesConfigManager;
+    }
 
-	
+    public PlayerConfigsManager getPlayerConfigsManager() {
+        return playerConfigsManager;
+    }
+
+    public MainConfigManager getMainConfigManager() {
+        return mainConfigManager;
+    }
+
+
 }
