@@ -1,0 +1,7 @@
+name: PlayerTimeLimit
+version: '${version}'
+main: ptl.ajneb97.PlayerTimeLimit
+api-version: '1.21'
+softdepend: [Multiverse-Core, PlaceholderAPI]
+authors: [Ajneb97, Kapitan_Floww]
+website: https://www.spigotmc.org/resources/96577/
