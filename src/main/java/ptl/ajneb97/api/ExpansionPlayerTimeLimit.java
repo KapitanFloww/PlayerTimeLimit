@@ -1,11 +1,11 @@
 package ptl.ajneb97.api;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
-
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.entity.Player;
 import ptl.ajneb97.PlayerTimeLimit;
+
+import java.util.Objects;
+
 /**
  * This class will automatically register as a placeholder expansion 
  * when a jar including this class is added to the directory 
@@ -18,10 +18,10 @@ import ptl.ajneb97.PlayerTimeLimit;
 public class ExpansionPlayerTimeLimit extends PlaceholderExpansion {
 
     // We get an instance of the plugin later.
-    private PlayerTimeLimit plugin;
+    private final PlayerTimeLimit plugin;
 
     public ExpansionPlayerTimeLimit(PlayerTimeLimit plugin) {
-    	this.plugin = plugin;
+    	this.plugin = Objects.requireNonNull(plugin);
     }
     
     /**
@@ -35,6 +35,7 @@ public class ExpansionPlayerTimeLimit extends PlaceholderExpansion {
     public boolean persist(){
         return true;
     }
+
     /**
      * Since this expansion requires api access to the plugin "SomePlugin" 
      * we must check if said plugin is on the server or not.
@@ -88,7 +89,7 @@ public class ExpansionPlayerTimeLimit extends PlaceholderExpansion {
      * <br>Since version 2.9.1 can you use OfflinePlayers in your requests.
      *
      * @param  player
-     *         A {@link org.bukkit.Player Player}.
+     *         A {@link org.bukkit.entity.Player}.
      * @param  identifier
      *         A String containing the identifier/value.
      *
@@ -100,8 +101,7 @@ public class ExpansionPlayerTimeLimit extends PlaceholderExpansion {
         if(player == null){
             return "";
         }
-        
-        
+
         // %playertimelimit_timeleft%
         if(identifier.equals("timeleft")){
             return PlayerTimeLimitAPI.getTimeLeft(player);

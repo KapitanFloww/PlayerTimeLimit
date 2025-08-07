@@ -1,8 +1,8 @@
 update_notification: true
 time_limits:
   default: 3600
-  vip: 7200
-  op: 0
+  vip: 3600
+  op: 3600
 world_whitelist_system:
   enabled: false
   worlds:

@@ -1,6 +1,23 @@
 package ptl.ajneb97;
 
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+import ptl.ajneb97.api.ExpansionPlayerTimeLimit;
+import ptl.ajneb97.api.PlayerTimeLimitAPI;
+import ptl.ajneb97.configs.ConfigsManager;
+import ptl.ajneb97.listeners.PlayerListener;
+import ptl.ajneb97.managers.MensajesManager;
+import ptl.ajneb97.managers.PlayerManager;
+import ptl.ajneb97.managers.ServerManager;
+import ptl.ajneb97.tasks.DataSaveTask;
+import ptl.ajneb97.tasks.PlayerTimeTask;
+import ptl.ajneb97.tasks.ServerTimeResetTask;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -12,25 +29,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import ptl.ajneb97.api.ExpansionPlayerTimeLimit;
-import ptl.ajneb97.api.PlayerTimeLimitAPI;
-import ptl.ajneb97.configs.ConfigsManager;
-import ptl.ajneb97.listeners.PlayerListener;
-import ptl.ajneb97.managers.MensajesManager;
-import ptl.ajneb97.managers.PlayerManager;
-import ptl.ajneb97.managers.ServerManager;
-import ptl.ajneb97.tasks.DataSaveTask;
-import ptl.ajneb97.tasks.PlayerTimeTask;
-import ptl.ajneb97.tasks.ServerTimeResetTask;
 
 
 
@@ -55,7 +53,9 @@ public class PlayerTimeLimit extends JavaPlugin {
 	   this.playerManager = new PlayerManager(this);
 	   this.serverManager = new ServerManager(this);
 	   registerEvents();
-	   registerCommands();
+
+	   getCommand("playertimelimit").setExecutor(new Comando(this));
+
 	   registerConfig();
 	   this.configsManager = new ConfigsManager(this);
 	   this.configsManager.configurar();
@@ -85,9 +85,6 @@ public class PlayerTimeLimit extends JavaPlugin {
 		this.configsManager.getPlayerConfigsManager().guardarJugadores();
 		serverManager.saveDataTime();
 		Bukkit.getConsoleSender().sendMessage(nombrePlugin+ChatColor.YELLOW + "Has been disabled! " + ChatColor.WHITE + "Version: " + version);
-	}
-	public void registerCommands(){
-		this.getCommand("playertimelimit").setExecutor(new Comando(this));
 	}
 	
 	public void registerEvents(){
